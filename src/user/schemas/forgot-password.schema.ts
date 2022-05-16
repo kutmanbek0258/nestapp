@@ -9,7 +9,7 @@ export const ForgotPasswordSchema = new Schema ({
     },
     verification: {
         type: String,
-        validate: validator.isUUID,
+        validate: Number,
         requierd: true,
     },
     firstUsed: {

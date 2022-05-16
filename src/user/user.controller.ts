@@ -3,7 +3,7 @@ import { ResetPasswordDto } from './dto/reset-password.dto';
 import { CreateForgotPasswordDto } from './dto/create-forgot-password.dto';
 import { Request } from 'express';
 import { LoginUserDto } from './dto/login-user.dto';
-import { Controller, Get, Post, Body, UseGuards, Req, HttpCode, HttpStatus, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Req, HttpCode, HttpStatus, Param, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { VerifyUuidDto } from './dto/verify-uuid.dto';
 import { UserService } from './user.service';
@@ -16,7 +16,7 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 export class UserController {
     constructor(
         private readonly userService: UserService,
-        ) {}
+    ) {}
 
     // ╔═╗╦ ╦╔╦╗╦ ╦╔═╗╔╗╔╔╦╗╦╔═╗╔═╗╔╦╗╔═╗
     // ╠═╣║ ║ ║ ╠═╣║╣ ║║║ ║ ║║  ╠═╣ ║ ║╣
@@ -36,6 +36,7 @@ export class UserController {
     @Post('login')
     @HttpCode(HttpStatus.OK)
     async login(@Req() req: Request, @Body() loginUserDto: LoginUserDto) {
+        
         return await this.userService.login(req, loginUserDto);
     }
 

@@ -1,7 +1,7 @@
-import { IsNotEmpty,  IsUUID } from 'class-validator';
+import { IsNotEmpty,  IsNumber,  IsUUID } from 'class-validator';
 
 export class VerifyUuidDto {
     @IsNotEmpty()
-    @IsUUID()
-    readonly verification: string;
+    @IsNumber()
+    readonly verification: number;
 }

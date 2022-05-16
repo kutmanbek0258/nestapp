@@ -1,8 +1,10 @@
 import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class NmailerService {
+
+    private logger = new Logger('EMAIL');
 
     constructor(private readonly mailerService: MailerService){}
 
@@ -14,17 +16,17 @@ export class NmailerService {
                 from: 'smanovkutman0258@gmail.com',
                 subject: 'Nestjs nodemailer service test',
                 text: uuid,
-                html: `
-                <form action="httpP//127.0.0.1:8080/user/verify-email" method="post" target="_blank">
-                    <input type="text" name="verification" value="${uuid}" readonly>
-                    <input type="submit" value="Verify email">
-                </form>`
+                html: `<h3>one-time verification code</h3>
+                <h2>${uuid}</h2>`
             })
             .then((success) => {
-                console.log(success)
+                this.logger.log(`\n---------------------!!---------------------
+            ${JSON.stringify(success)}\n---------------------!!---------------------`)
             })
             .catch((error) => {
-                console.log(error)
+                this.logger.error(`\n---------------------!!---------------------
+                ${JSON.stringify(error)}\n---------------------!!---------------------`)
+                throw new InternalServerErrorException('Error send mail');
             });
     }
 

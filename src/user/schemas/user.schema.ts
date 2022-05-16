@@ -37,8 +37,8 @@ export const UserSchema = new mongoose.Schema ({
         default: ['user'],
     },
     verification: {
-        type: String,
-        validate: validator.isUUID,
+        type: Number,
+        unique: true
     },
     verified: {
         type: Boolean,

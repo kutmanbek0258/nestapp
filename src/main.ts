@@ -5,13 +5,19 @@ import { warn } from 'console';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UserModule } from './user/user.module';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { MyLogger } from './logger/logger.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: new MyLogger()
+  });
 
   app.useGlobalPipes(new ValidationPipe({
 
   }));
+
+  app.useGlobalFilters(new HttpExceptionFilter);
 
   const swaggerOptions = new DocumentBuilder()
     .setTitle('API')

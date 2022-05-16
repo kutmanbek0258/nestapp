@@ -5,7 +5,6 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { Injectable, BadRequestException, NotFoundException, ConflictException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { v4 } from 'uuid';
 import { addHours } from 'date-fns';
 import * as bcrypt from 'bcrypt';
 import { CreateForgotPasswordDto } from './dto/create-forgot-password.dto';
@@ -15,7 +14,6 @@ import { RefreshAccessTokenDto } from './dto/refresh-access-token.dto';
 import { ForgotPassword } from './interfaces/forgot-password.interface';
 import { User } from './interfaces/user.interface';
 import { NmailerService } from 'src/nmailer/nmailer.service';
-import moment from 'moment';
 
 @Injectable()
 export class UserService {
@@ -95,7 +93,7 @@ export class UserService {
         await this.saveForgotPassword(req, createForgotPasswordDto);
         return {
             email: createForgotPasswordDto.email,
-            message: 'verification sent.',
+            message: ['verification sent.'],
         };
     }
 
@@ -107,7 +105,7 @@ export class UserService {
         await this.setForgotPasswordFirstUsed(req, forgotPassword);
         return {
             email: forgotPassword.email,
-            message: 'now reset your password.',
+            message: ['now reset your password.'],
         };
     }
 
@@ -120,7 +118,7 @@ export class UserService {
         await this.resetUserPassword(resetPasswordDto);
         return {
             email: resetPasswordDto.email,
-            message: 'password successfully changed.',
+            message: ['password successfully changed.'],
         };
     }
     // ┌─┐┬─┐┌┬┐┌─┐┌─┐┌┬┐┌─┐┌┬┐  ┌─┐┌─┐┬─┐┬  ┬┬┌─┐┌─┐
@@ -144,21 +142,22 @@ export class UserService {
     }
 
     private setRegistrationInfo(user): any {
-        user.verification = v4();
+        user.verification = Math.floor(100000 + Math.random() * 900000);
         user.verificationExpires = addHours(new Date(), this.HOURS_TO_VERIFY);
     }
 
     private buildRegistrationInfo(user): any {
-        this.nmailerService.sendMail(user.email, user.verification);
+        this.nmailerService.sendMail(user.email, String(user.verification));
         const userRegistrationInfo = {
             fullName: user.fullName,
             email: user.email,
             verified: user.verified,
+            verificationExpires: user.verificationExpires
         };
         return userRegistrationInfo;
     }
 
-    private async findByVerification(verification: string): Promise<User> {
+    private async findByVerification(verification: number): Promise<User> {
         const user = await this.userModel.findOne({verification, verified: false, verificationExpires: {$gt: new Date()}});
         if (!user) {
             throw new BadRequestException('Bad request.');
@@ -224,7 +223,7 @@ export class UserService {
     private async saveForgotPassword(req: Request, createForgotPasswordDto: CreateForgotPasswordDto) {
         const forgotPassword = await this.forgotPasswordModel.create({
             email: createForgotPasswordDto.email,
-            verification: v4(),
+            verification: Math.floor(100000 + Math.random() * 900000),
             expires: addHours(new Date(), this.HOURS_TO_VERIFY),
             ip: this.authService.getIp(req),
             browser: this.authService.getBrowserInfo(req),
