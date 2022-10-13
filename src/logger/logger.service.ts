@@ -1,6 +1,6 @@
 import { ConsoleLogger } from "@nestjs/common"
 
-export class MyLogger extends ConsoleLogger {
+export class AppLogger extends ConsoleLogger {
     
     log(message: any, context?: string): void 
     log(message: any, ...optionalParams: any[]): void

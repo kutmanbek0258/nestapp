@@ -11,7 +11,7 @@ import { NmailerService } from './nmailer.service';
         secure: false,
         auth: {
           user: 'smanovkutman0258@gmail.com',
-          pass: 'etmrbzolshinpblc'
+          pass: 'ogwbsyjgawozfknw'
         }
       },
       defaults: {

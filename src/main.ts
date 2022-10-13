@@ -6,11 +6,11 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
-import { MyLogger } from './logger/logger.service';
+import { AppLogger } from './logger/logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: new MyLogger()
+    logger: new AppLogger()
   });
 
   app.useGlobalPipes(new ValidationPipe({

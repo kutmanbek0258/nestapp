@@ -21,7 +21,7 @@ export class NmailerService {
             })
             .then((success) => {
                 this.logger.log(`\n---------------------!!---------------------
-            ${JSON.stringify(success)}\n---------------------!!---------------------`)
+                ${JSON.stringify(success)}\n---------------------!!---------------------`)
             })
             .catch((error) => {
                 this.logger.error(`\n---------------------!!---------------------
