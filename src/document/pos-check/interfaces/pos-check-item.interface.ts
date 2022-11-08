@@ -1,15 +1,13 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
-export interface POSCheckItem extends Document{
+export interface POSCheckItem extends Document {
+  POSCheck: string;
 
-    POSCheck: string;
+  product: string;
 
-    product: string;
+  quantity: number;
 
-    quantity: number;
+  price: number;
 
-    price: number;
-
-    currency: string;
-
+  currency: string;
 }

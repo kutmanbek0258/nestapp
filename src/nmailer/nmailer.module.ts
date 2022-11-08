@@ -11,18 +11,16 @@ import { NmailerService } from './nmailer.service';
         secure: false,
         auth: {
           user: 'smanovkutman0258@gmail.com',
-          pass: 'ogwbsyjgawozfknw'
-        }
+          pass: 'bhppojvjybyllxet',
+        },
       },
       defaults: {
         from: '"nest-modules" <user@outlook.com>',
       },
-      template: {
-        
-      }
-    })
+      template: {},
+    }),
   ],
   providers: [NmailerService],
-  exports: [NmailerService]
+  exports: [NmailerService],
 })
 export class NmailerModule {}

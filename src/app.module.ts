@@ -14,15 +14,16 @@ import { AppLoggerMiddleware } from './middleware/http-logger.middleware';
   providers: [AppService],
   imports: [
     MongooseModule.forRoot('mongodb://127.0.0.1/sumsar_retail', {
+      // connectionName: 'sumsar_retail',
       authSource: 'admin',
       user: 'mongoadmin',
-      pass: 'sMANovKutman'
+      pass: 'sMANovKutman',
     }),
     UserModule,
     AuthModule,
     NmailerModule,
     ReferenceModule,
-    DocumentModule
+    DocumentModule,
   ],
 })
 export class AppModule {

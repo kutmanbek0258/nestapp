@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
-export interface POSCheckItem extends Document {
-  POSCheck: string;
+export interface ProductReceiptItem extends Document {
+  ProductReceipt: string;
 
   product: string;
 

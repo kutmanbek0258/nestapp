@@ -7,17 +7,18 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { AppLogger } from './logger/logger.service';
+import { ReferenceModule } from './reference/reference.module';
+import { DocumentModule } from './document/document.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: new AppLogger()
+    logger: new AppLogger(),
+    cors: true,
   });
 
-  app.useGlobalPipes(new ValidationPipe({
+  app.useGlobalPipes(new ValidationPipe({}));
 
-  }));
-
-  app.useGlobalFilters(new HttpExceptionFilter);
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const swaggerOptions = new DocumentBuilder()
     .setTitle('API')
@@ -27,9 +28,7 @@ async function bootstrap() {
     .build();
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerOptions, {
-    include: [
-      UserModule
-    ]
+    include: [UserModule, ReferenceModule, DocumentModule],
   });
 
   SwaggerModule.setup('api', app, swaggerDocument);

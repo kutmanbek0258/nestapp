@@ -1,19 +1,17 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
-export interface POSCheck extends Document{
+export interface POSCheck extends Document {
+  company: string;
 
-    company: string;
+  shop: string;
 
-    shop: string;
+  POS: string;
 
-    POS: string;
+  shift: string;
 
-    shift: string;
+  salesman: string;
 
-    salesman: string;
+  customer: string;
 
-    customer: string;
-
-    archive: boolean;
-
+  archive: boolean;
 }

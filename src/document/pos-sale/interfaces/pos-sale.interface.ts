@@ -1,15 +1,13 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
-export interface POSSale extends Document{
+export interface POSSale extends Document {
+  shop: string;
 
-    shop: string;
+  POS: string;
 
-    POS: string;
+  shift: string;
 
-    shift: string;
+  salesman: string;
 
-    slesman: string;
-
-    comment: string;
-
+  comment: string;
 }

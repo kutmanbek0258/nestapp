@@ -12,19 +12,18 @@ import { ShopModule } from './shop/shop.module';
 import { SupplierModule } from './supplier/supplier.module';
 
 @Module({
-
   imports: [
-    CompanyModule, 
-    CurrencyModule, 
-    DepotModule, 
-    PersonModule, 
-    PosModule, 
-    PriceTemplateModule, 
-    ProductBarcodeModule, 
-    ProductGroupModule, 
-    ProductModule, 
-    ShopModule, 
-    SupplierModule
-  ]
+    CompanyModule,
+    CurrencyModule,
+    DepotModule,
+    PersonModule,
+    PosModule,
+    PriceTemplateModule,
+    ProductBarcodeModule,
+    ProductGroupModule,
+    ProductModule,
+    ShopModule,
+    SupplierModule,
+  ],
 })
 export class ReferenceModule {}

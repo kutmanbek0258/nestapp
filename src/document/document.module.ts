@@ -13,20 +13,19 @@ import { ProductReturnToSupplierModule } from './product-return-to-supplier/prod
 import { ProductWriteOffModule } from './product-write-off/product-write-off.module';
 
 @Module({
-
   imports: [
-    PosCheckModule, 
-    // PosSaleModule, 
-    PosShiftModule, 
-    // ProductMoveModule, 
-    // ProductOrderToSupplierModule, 
-    // ProductPostingModule, 
-    // ProductPriceModule, 
-    // ProductReceiptModule, 
-    // ProductRecountModule, 
-    // ProductReturnFromCustomerModule, 
-    // ProductReturnToSupplierModule, 
+    PosCheckModule,
+    PosSaleModule,
+    PosShiftModule,
+    // ProductMoveModule,
+    // ProductOrderToSupplierModule,
+    // ProductPostingModule,
+    // ProductPriceModule,
+    // ProductReceiptModule,
+    // ProductRecountModule,
+    // ProductReturnFromCustomerModule,
+    // ProductReturnToSupplierModule,
     // ProductWriteOffModule
-  ]
+  ],
 })
 export class DocumentModule {}

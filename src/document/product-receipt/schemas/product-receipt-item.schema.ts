@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const POSCheckItemSchema = new mongoose.Schema({
+export const ProductReceiptItemSchema = new mongoose.Schema({
   ProductReceipt: {
     type: mongoose.Types.ObjectId,
     ref: 'POSCheck',

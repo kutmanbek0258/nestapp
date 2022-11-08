@@ -1,14 +1,10 @@
-import { PartialType } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Length, IsNumber } from 'class-validator';
-import { AddProductReceiptItemDto } from './add-product-receipt-item.dto';
 
-export class UpdateProductReceiptItemDto extends PartialType(
-  AddProductReceiptItemDto,
-) {
+export class AddPosSaleItemDto {
   @IsNotEmpty()
   @IsString()
   @Length(24)
-  ProductReceipt: string;
+  POSSale: string;
 
   @IsNotEmpty()
   @IsString()

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { PosCheckService } from './pos-check.service';
 import { CreatePosCheckDto } from './dto/create-pos-check.dto';
 import { UpdatePosCheckDto } from './dto/update-pos-check.dto';
@@ -25,7 +33,10 @@ export class PosCheckController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePosCheckDto: UpdatePosCheckDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updatePosCheckDto: UpdatePosCheckDto,
+  ) {
     return this.posCheckService.update(id, updatePosCheckDto);
   }
 
@@ -35,28 +46,30 @@ export class PosCheckController {
   }
 
   @Post('add-item')
-  addPosCheckItem(@Body() addPosCheckItemDto: AddPosCheckItemDto){
+  addPosCheckItem(@Body() addPosCheckItemDto: AddPosCheckItemDto) {
     return this.posCheckService.addPosCheckItem(addPosCheckItemDto);
   }
 
-  @Get('find-all-pos-check-items/:id')
-  findAllPosCheckItems(@Param('id') productId: string){
-    return this.posCheckService.findAllPosCheckItem(productId);
+  @Get('find-all-items/:id')
+  findAllPosCheckItems(@Param('id') posCheckId: string) {
+    return this.posCheckService.findAllPosCheckItem(posCheckId);
   }
 
-  @Get('find-pos-check-item-one/:id')
-  findPosCheckItemOne(@Param('id') id: string){
+  @Get('find-item-one/:id')
+  findPosCheckItemOne(@Param('id') id: string) {
     return this.posCheckService.findPosCheckItemOne(id);
   }
 
   @Post('update-item/:id')
-  updatePosCheckItem(@Param('id') id: string, @Body() updatePosCheckItemDto: UpdatePosCheckItemDto){
+  updatePosCheckItem(
+    @Param('id') id: string,
+    @Body() updatePosCheckItemDto: UpdatePosCheckItemDto,
+  ) {
     return this.posCheckService.updatePosCheckItem(id, updatePosCheckItemDto);
   }
 
-  @Delete('remove-pos-check-item/:id')
-  removePosCheckItem(@Param('id') id: string){
+  @Delete('remove-item/:id')
+  removePosCheckItem(@Param('id') id: string) {
     return this.posCheckService.removePosCheckItem(id);
   }
-
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Param } from '@nestjs/common';
 import { PosShiftService } from './pos-shift.service';
 import { OpenPosShiftDto } from './dto/open-pos-shift.dto';
 
@@ -7,12 +7,12 @@ export class PosShiftController {
   constructor(private readonly posShiftService: PosShiftService) {}
 
   @Post('open')
-  open(@Body() openPosShiftDto: OpenPosShiftDto){
+  open(@Body() openPosShiftDto: OpenPosShiftDto) {
     return this.posShiftService.open(openPosShiftDto);
   }
 
   @Post('close/:id')
-  close(@Param('id') id: string){
+  close(@Param('id') id: string) {
     return this.posShiftService.close(id);
   }
 

@@ -7,22 +7,25 @@ import { Company } from './interfaces/company.interface';
 
 @Injectable()
 export class CompanyService {
-
-  constructor(@InjectModel('Company') private readonly companyModel: Model<Company>){}
+  constructor(
+    @InjectModel('Company') private readonly companyModel: Model<Company>,
+  ) {}
 
   async create(createCompanyDto: CreateCompanyDto) {
-    const company = await new this.companyModel(createCompanyDto).save()
-    return {company: company};
+    const company = await new this.companyModel(createCompanyDto).save();
+    return { company: company };
   }
 
   async findAll() {
     const companies = await this.companyModel.find();
-    return {companies: companies};
+    return { companies: companies };
   }
 
   async findOne(id: string) {
-    const company = await this.companyModel.findById(id).populate('admin', 'fullName email');
-    return {company: company};
+    const company = await this.companyModel
+      .findById(id)
+      .populate('admin', 'fullName email');
+    return { company: company };
   }
 
   async update(id: string, updateCompanyDto: UpdateCompanyDto) {

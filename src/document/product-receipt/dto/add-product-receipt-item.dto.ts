@@ -1,10 +1,10 @@
 import { IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
 
-export class AddPosCheckItemDto {
+export class AddProductReceiptItemDto {
   @IsNotEmpty()
   @IsString()
   @Length(24)
-  POSCheck: string;
+  ProductReceipt: string;
 
   @IsNotEmpty()
   @IsString()
