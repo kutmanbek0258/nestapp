@@ -8,12 +8,13 @@ import { NmailerModule } from './nmailer/nmailer.module';
 import { ReferenceModule } from './reference/reference.module';
 import { DocumentModule } from './document/document.module';
 import { AppLoggerMiddleware } from './middleware/http-logger.middleware';
+import { AutomationModule } from './automation/automation.module';
 
 @Module({
   controllers: [AppController],
   providers: [AppService],
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1/sumsar_retail', {
+    MongooseModule.forRoot('mongodb://10.214.2.42/ebt_automation', {
       // connectionName: 'sumsar_retail',
       authSource: 'admin',
       user: 'mongoadmin',
@@ -24,6 +25,7 @@ import { AppLoggerMiddleware } from './middleware/http-logger.middleware';
     NmailerModule,
     ReferenceModule,
     DocumentModule,
+    AutomationModule,
   ],
 })
 export class AppModule {
